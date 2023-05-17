@@ -1,2 +1,1 @@
-# ltqa
-LandsaT Quality Assessment (LTQA) 
+Script and file structure used to analyse bulk Landsat metadata. the CSV files needed to run the script (which should be added to "00_source" can be obtained from the <a href="https://www.usgs.gov/landsat-missions/bulk-metadata-service">Landsat service portal</a>. For exemplary purposes, each folder contains a subset of the input and output data.
