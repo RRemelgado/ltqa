@@ -10,7 +10,7 @@ require("plyr")
 #-----------------------------------------------------------------------------#
 
 # list files to process
-files = list.files('source', '.csv$', full.names=T)
+files = list.files('00_source', '.csv$', full.names=T)
 
 # setup progress bar
 pb = txtProgressBar(min=0, max=length(files), style=3, width=50, char="=")
@@ -61,7 +61,7 @@ for (i in 1:length(files)) {
   # write data by year (when possible, add to existing file)
   for (year in as.character(unique(ids$year))) {
     ind = which(ids$year == as.numeric(year))
-    oname = paste0('./meta/', year, '.csv')
+    oname = file.path('01_meta', paste0(year, '.csv'))
     if (!file.exists(oname)) {
       write_csv(ids[ind,], oname, progress=F)
     }else {
@@ -110,18 +110,12 @@ f2 = function(x,y) {
 # list files to aggregate
 files = list.files('meta', '.csv', full.names=T)
 
-# extract ID's of land tiles
-tiles = sprintf('%06d', read.csv('wrs/wrs2_land_tiles.csv', stringsAsFactors=F)$tiles)
-
 # setup progress bar
 pb = txtProgressBar(min=0, max=length(files), style=3, width=50, char="=")
 
 for (i in 1:length(files)) {
   
   ids = read_csv(files[i], progress=FALSE, show_col_types=F)
-  
-  # subset data frame for land tiles
-  ids = ids[which(ids$tile_id %in% tiles),]
   
   # aggregate data.frame on a monthly basis
   odf = ddply(ids[which(ids$image_quality > 0),], .(tile_id,year,dayOrNight), 
