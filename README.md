@@ -3,7 +3,7 @@ We developed a suite of quality metrics that characterize the annual and year-to
 
 Here, we provided code for the calculation of these metrics (see subfolder **LTQA**), as well as code to analyse the source metadata (see subfolder **meta**), which is a required initial step.
 
-
+<img src="ExtendedDataFigure_1-data_frequency.png">
 
 ## List of calculated metrics
 * <i>nrTiles</i> - Number of Landsat tiles used to compute quality metric.
